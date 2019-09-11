@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from '../service/data.service';
+import { Post } from '../models/Post';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  postToShow: Post[] = [];
 
-  constructor() {}
-
+  constructor(private data: DataService) {
+    //load data
+    this.postToShow = this.data.getAllPosts();
+  }
 }

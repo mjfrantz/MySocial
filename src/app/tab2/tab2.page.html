@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Two
+      Register new Post
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Your Message:</ion-label>
+    <ion-input [(ngModel)]="model.message" name="message"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Image url:</ion-label>
+    <ion-input [(ngModel)]="model.imageUrl" name="image"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">To:</ion-label>
+    <ion-select [(ngModel)]="model.to" name="to">
+      <ion-select-option value="Everyone">Everyone</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button (click)="post()" expand="block" size="medium" color="primary">Submit Post</ion-button>
+
+
+</ion-content>

@@ -7,13 +7,16 @@
 </ion-header>
 
 <ion-content>
-  <h1>This is Ionic</h1>
 
-  <button>
-    This is a button
-  </button>
+  <ion-card *ngFor="let post of postToShow">
+    <ion-card-content> <img src="{{post.imageUrl}}"> </ion-card-content>
+    <ion-card-header>
+      <ion-card-title>{{post.from}}</ion-card-title>
+      <ion-card-subtitle>{{post.createdOn | date:'yyyy-MM-dd HH:mm:ss'}}</ion-card-subtitle>
+    </ion-card-header>
 
-  <ion-button>
-    An ionic button
-  </ion-button>
+    <ion-card-content>{{post.message}}</ion-card-content>
+  </ion-card>
+
+
 </ion-content>
