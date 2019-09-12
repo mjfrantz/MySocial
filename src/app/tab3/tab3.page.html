@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Three
+      Register Friends
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <!-- Reigster new friends -->
+
+
+  <h3>
+    Register New Friend
+  </h3>
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked">Name:</ion-label>
+      <ion-input [(ngModel)]="model.name" name="userName"></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-button (click)="register()" expand="block" size="medium" color="primary">Register Friend</ion-button>
+
+  <!-- List existing Friend -->
+
+
+
+</ion-content>
