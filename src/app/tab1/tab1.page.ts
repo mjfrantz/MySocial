@@ -14,6 +14,7 @@ export class Tab1Page {
   constructor(private data: DataService) {
     //load data
     this.data.getAllPosts().subscribe(res => {
+      this.postToShow = [];
       // iterate over the res to fix createdOn format
       for (let i = 0; i < res.length; i++) {
         let post = res[i];
@@ -22,9 +23,11 @@ export class Tab1Page {
           co.seconds,
           co.nanoseconds
         ).toDate();
-      }
 
-      this.postToShow = res;
+        if (post.to == 'Everyone' || post.to == 'Mike' || post.from == 'Mike') {
+          this.postToShow.push(post);
+        }
+      }
     });
   }
 }

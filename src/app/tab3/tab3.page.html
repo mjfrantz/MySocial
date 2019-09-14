@@ -24,7 +24,10 @@
   <ion-button (click)="register()" expand="block" size="medium" color="primary">Register Friend</ion-button>
 
   <!-- List existing Friend -->
+  <hr>
 
-
+  <ion-list>
+    <ion-item *ngFor="let friend of friendsToDisplay">{{friend.name}}</ion-item>
+  </ion-list>
 
 </ion-content>
