@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { Post } from '../models/Post';
 import { firestore } from 'firebase';
+import { SharedService } from '../service/shared.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,7 +12,7 @@ import { firestore } from 'firebase';
 export class Tab1Page {
   postToShow: Post[] = [];
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService, shared: SharedService) {
     //load data
     this.data.getAllPosts().subscribe(res => {
       this.postToShow = [];
@@ -24,7 +25,11 @@ export class Tab1Page {
           co.nanoseconds
         ).toDate();
 
-        if (post.to == 'Everyone' || post.to == 'Mike' || post.from == 'Mike') {
+        if (
+          post.to == 'Everyone' ||
+          post.to == shared.userName ||
+          post.from == shared.userName
+        ) {
           this.postToShow.push(post);
         }
       }

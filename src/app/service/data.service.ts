@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   AngularFirestoreCollection,
   AngularFirestore
@@ -41,9 +42,26 @@ export class DataService {
     this.friendCollection.add(item);
   }
 
+  public removeFriend(objId: string) {
+    //updated and object
+    //this.fb.doc('friends/' + objId).set(friendInstanceWithNewInfo);
+
+    //remove the obj from database
+    this.fb.doc('friends/' + objId).delete();
+  }
+
   public getAllFriends() {
     //read all friends
-    this.allFriends = this.friendCollection.valueChanges();
+    this.allFriends = this.friendCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(m => {
+          let id = m.payload.doc.id;
+          let friend: Friend = m.payload.doc.data();
+          friend.fbId = id;
+          return friend;
+        });
+      })
+    );
     return this.allFriends;
   }
 }
